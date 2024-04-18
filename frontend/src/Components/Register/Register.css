@@ -8,6 +8,8 @@
   border-radius: 10px;
   box-sizing: border-box;
   padding: 20px 30px;
+  width: 75%;
+  max-width: 40rem;
 }
 
 .title {
@@ -35,7 +37,6 @@
   align-items: center;
   gap: 12px;
   align-self: stretch;
-  border-radius: 12px;
   background: #f0f2f5;
   margin-top: 10px;
   font-size: 12px;
@@ -61,4 +62,5 @@ label {
   background: #1a80e5;
   font-size: 14px;
   color: #fff;
+  background: var(--primary-btn-bg);
 }

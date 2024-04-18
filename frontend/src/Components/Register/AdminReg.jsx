@@ -1,5 +1,6 @@
 import React from 'react'; 
 import "./Register.css"
+import {Link} from "react-router-dom";
 
 const AdminReg = () => {
   return (
@@ -51,7 +52,10 @@ const AdminReg = () => {
 
                     />
                 </div>
+
+                <button className='--btn'>Create account</button>
             </form>
+            <p>Already have an acaount? <Link to="/login">Login</Link>{" "}</p>
         </div>
     </div>
   )

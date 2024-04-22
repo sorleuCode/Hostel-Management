@@ -4,7 +4,7 @@ import Login from "./Components/Register/Login"
 import StudentReg from "./Components/Register/StudentReg"
 import HomeDash from "./Components/Dashboard/HomeDash"
 import Layout from "./Components/Layout/Layout"
-
+import StudentDashboard from "./Components/Dashboard/StudentDashboard";
 function App() {
 
   return (
@@ -16,7 +16,7 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/student-reg" element={<StudentReg />} />
           <Route path="/homedash" element={<Layout><HomeDash /></Layout>} />
-
+          <Route path="/studentdash" element={<StudentDashboard/>}/>
         </Routes>
 
       </div>

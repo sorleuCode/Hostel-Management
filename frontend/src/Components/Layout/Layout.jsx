@@ -1,11 +1,11 @@
 import React, { Children } from 'react'
 import Header from '../Header/Header'
 
-const Layout = ({Children}) => {
+const Layout = ({children}) => {
   return (
     <>
       <Header/>
-    <div style={{minHeight: "80vh"}}>{Children}</div>
+    <div style={{minHeight: "80vh"}}>{children}</div>
     </>
   )
 }

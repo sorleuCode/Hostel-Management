@@ -1,87 +1,77 @@
-import React from 'react'
+import React from "react";
+import "./Register.css";
 
 const StudentReg = () => {
     return (
-        <div className='container form__ --100vh'>
-            <div className='form-container'>
-                <p className='title'>Student Reg Page</p>
-                <form className='form'>
-                    <div className='--dir-column'>
-                        <label htmlFor='name'>Full name:</label>
+        <div className=" form__ --100vh">
+            <div className="form-container">
+                <p className="title">Register a new student</p>
+                <form className="form">
+                    <div className="--dir-column">
+                        <label htmlFor="name">Students Name:</label>
                         <input
                             type="text"
-                            name='name'
-                            className='input'
-                            placeholder='Enter your name'
-                            required
-
+                            className="input"
+                            name="name"
+                            placeholder="Enter name"
                         />
                     </div>
-                    <div className='--dir-column'>
-                        <label htmlFor='age'>Age:</label>
+
+                    <div className="--dir-column">
+                        <label htmlFor="name">Age:</label>
                         <input
                             type="text"
-                            name='age'
-                            className='input'
-                            placeholder='input your age'
-                            required
-
+                            className="input"
+                            name="age"
+                            placeholder="Enter age"
                         />
                     </div>
-                    <div className='--dir-column'>
-                        <label htmlFor='roomNum'>Room Number:</label>
+
+                    <div className="--dir-column">
+                        <label htmlFor="name">Room Number:</label>
                         <input
                             type="number"
-                            name='roomNum'
-                            className='input'
-                            placeholder='input room number'
-                            required
-
+                            className="input"
+                            name="room"
+                            placeholder="Enter room number"
                         />
                     </div>
-                    <div className='--dir-column'>
-                        <label htmlFor='email'>Contact Email:</label>
+
+                    <div className="--dir-column">
+                        <label htmlFor="name">Contact Email:</label>
                         <input
                             type="email"
-                            name='email'
-                            className='input'
-                            placeholder='example@gmail.com'
-                            required
-
+                            className="input"
+                            name="email"
+                            placeholder="Enter email"
                         />
                     </div>
 
-                    <div className='--dir-column'>
-                        <label htmlFor='name'>Guardian&apos;s Name:</label>
+                    <div className="--dir-column">
+                        <label htmlFor="name">Guardian&apos;s Name:</label>
                         <input
                             type="text"
-                            name='name'
-                            className='input'
-                            placeholder='Enter your name'
-                            required
-
+                            className="input"
+                            name="guardian"
+                            placeholder="Enter name"
                         />
                     </div>
 
-                    <div className='--dir-column'>
-                        <label htmlFor='email'>Guardian&apos;s Email:</label>
+                    <div className="--dir-column">
+                        <label htmlFor="name">Guardian&apos;s Contact Email:</label>
                         <input
                             type="email"
-                            name='email'
-                            className='input'
-                            placeholder='example@gmail.com'
-                            required
-
+                            className="input"
+                            name="g_email"
+                            placeholder="Enter email"
                         />
                     </div>
 
-                    <button className='--btn'>Register</button>
+                    <button className="--btn">Register</button>
                 </form>
-
             </div>
-
         </div>
-    )
-}
+    );
+};
 
-export default StudentReg
+export default StudentReg;

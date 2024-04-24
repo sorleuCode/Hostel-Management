@@ -5,6 +5,7 @@ import StudentReg from "./Components/Register/StudentReg"
 import HomeDash from "./Components/Dashboard/HomeDash"
 import Layout from "./Components/Layout/Layout"
 import StudentDashboard from "./Components/Dashboard/StudentDashboard";
+import Room from "./Components/Dashboard/Room"
 function App() {
 
   return (
@@ -17,6 +18,8 @@ function App() {
           <Route path="/student-reg" element={<StudentReg />} />
           <Route path="/homedash" element={<Layout><HomeDash /></Layout>} />
           <Route path="/studentdash" element={<StudentDashboard/>}/>
+          <Route path="/room" element={<Room/>}/>
+        
         </Routes>
 
       </div>

@@ -1,24 +1,26 @@
 .form__ {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 .form-container {
+  width: 70%;
+  max-width: 35rem;
   background-color: #fff;
   border-radius: 10px;
   box-sizing: border-box;
   padding: 20px 30px;
-  width: 75%;
-  max-width: 40rem;
+  margin: 0 auto;
 }
 
 .title {
-  font-family: "Inter";
-  font-size: 32px;
+  font-family: Inter;
+  font-size: 30px;
   font-style: normal;
   font-weight: 700;
-  line-height: 40px;
-  letter-spacing: -0.8px;
+  text-align: center;
 }
 
 .form {
@@ -37,6 +39,7 @@
   align-items: center;
   gap: 12px;
   align-self: stretch;
+  border-radius: 12px;
   background: #f0f2f5;
   margin-top: 10px;
   font-size: 12px;
@@ -44,7 +47,7 @@
 
 label {
   color: #121417;
-  font-family: "Inter";
+  font-family: Inter;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -62,5 +65,20 @@ label {
   background: #1a80e5;
   font-size: 14px;
   color: #fff;
-  background: var(--primary-btn-bg);
+}
+
+@media screen and (max-width: 600px) and (min-width: 480px) {
+  .title {
+    font-size: 25px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .form-container {
+    width: 100%;
+  }
+
+  .title {
+    font-size: 20px;
+  }
 }

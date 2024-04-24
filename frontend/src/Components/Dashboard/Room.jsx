@@ -65,7 +65,7 @@ const Room = () => {
     };
 
     return (
-        <div className="container --flex-start">
+        <div className="container --flex-start --gap">
             <Sidebar />
             <div>
                 <h1>Hostel Room Listing</h1>

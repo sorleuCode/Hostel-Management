@@ -12,7 +12,6 @@ const AddRoomModal = ({ onAddRoom, onClose }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log(e.target)
     setNewRoom((prevRoom) => ({
       ...prevRoom,
       [name]: value,

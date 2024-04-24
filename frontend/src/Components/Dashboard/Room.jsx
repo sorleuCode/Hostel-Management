@@ -6,7 +6,7 @@ import RoomTable from "./RoomTable";
 const initialRooms = [
     {
         roomNumber: "101",
-        capacity: 4,
+        capacity: 3,
         occupancy: 2,
         status: "Available",
         location: "Lakeside Manor, Riverside",

@@ -5,7 +5,8 @@ import StudentReg from "./Components/Register/StudentReg"
 import HomeDash from "./Components/Dashboard/HomeDash"
 import Layout from "./Components/Layout/Layout"
 import StudentDashboard from "./Components/Dashboard/StudentDashboard";
-import Room from "./Components/Dashboard/Room"
+import Room from "./Components/Dashboard/Room";
+import AdminPreview from "./Components/AdminPreview/AdminPreview";
 function App() {
 
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/homedash" element={<Layout><HomeDash /></Layout>} />
           <Route path="/studentdash" element={<StudentDashboard/>}/>
           <Route path="/room" element={<Room/>}/>
+          <Route path="/adminsPrev" element={<AdminPreview/>}/>
         
         </Routes>
 

@@ -24,7 +24,7 @@ const Login = () => {
                         <input 
                         type="password" 
                         className='input'
-                        name='passeord'
+                        name='password'
                         placeholder='Enter your password'
                         required
     

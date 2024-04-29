@@ -97,7 +97,7 @@ const Attendance = () => {
     const [activeIndex, setActiveIndex] = useState(-1);
 
     const handleToggleClick = (index) => {
-        setActiveIndex(index === activeIndex) ? -1 : index
+        setActiveIndex(index === activeIndex ? -1 : index)
     }
 
     const studentData = [
@@ -203,7 +203,7 @@ const Attendance = () => {
                 ))}
 
                 <div className='attendanceLas'>
-                    <button className='attendancebtn'>Submit</button>
+                    <button className='attendanceBtn'>Submit</button>
                 </div>
 
             </div>

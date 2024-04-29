@@ -3,7 +3,7 @@ import "./Header.css";
 import { Link } from "react-router-dom";
 
 const items = [
-    { title: "Dashboard", url: "/dashboard" },
+    { title: "Dashboard", url: "/homedash" },
     { title: "Student", url: "/studentdash" },
     { title: "Rooms", url: "/room" },
 ];
@@ -13,7 +13,7 @@ const Header = () => {
         <header>
             <nav className="navigation --flex-between">
                 <div className="logo">
-                    <Link to="/homedash">
+                    <Link to="/">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="14"

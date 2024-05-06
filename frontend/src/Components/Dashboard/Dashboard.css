@@ -155,18 +155,21 @@ tbody > tr:hover {
   position: fixed;
   left: 0;
   display: block;
+  background-color: #fff;
 }
 
 .sidebar-toggle-iconb {
   display: none;
   font-size: 50px;
   cursor: pointer;
+  z-index: 20;
 }
 
 
 @media (max-width: 991px) {
     .sidebar-toggle-iconb {
       display: block;
+      font-size: 30px;
     }
 
     .desktop-side-nav {

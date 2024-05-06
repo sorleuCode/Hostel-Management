@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Sidebar from "./Sidebar"
 import RoomTable from "./RoomTable";
+import { FaBars, FaTimes } from "react-icons/fa";
+import "../Dashboard/Dashboard.css"
 
 
 const initialRooms = [
@@ -32,6 +34,7 @@ const Room = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [rooms, setRooms] = useState(initialRooms);
     const [filteredData, setFilteredData] = useState(initialRooms);
+    const [isSideBarToggle, setIsSideBarToggle] = useState(false)
 
     const handleSearchChange = (e) => {
         const term = e.target.value.toLowerCase();
@@ -67,26 +70,55 @@ const Room = () => {
     };
 
     return (
-        <div className="container --flex-start --gap">
-            <Sidebar />
+        <div>
             <div>
-                <h1>Hostel Room Listing</h1>
-                <input
-                    placeholder="Search by room number, status, or location"
-                    type="text"
-                    className="search"
-                    value={searchTerm}
-                    onChange={handleSearchChange}
-                />
+                {isSideBarToggle && (<div className='mobile-side-nav'>
+                    <Sidebar />
+                </div>)}
+            </div>
 
-                <RoomTable
-                    rooms={filteredData}
-                    onAddRoom={handleAddRoom}
-                    onUpdateRoom={handleUpdateRoom}
-                    onDeleteRoom={handleDeleteRoom}
-                />
+            <div className='--flex --overflow-hidden'>
+                <div className="desktop-side-nav">
+                    <Sidebar />
+
+                </div>
+                <div className="--flex-dir-column --overflow-y-auto  --flex-1 --overflow-x-hidden">
+                    <main className='--flex-justify-center w-full'>
+                        <div className="right --dash-main">
+                            <div className="--flex-justify-between">
+                                <h1>Hostel Room Listing</h1>
+
+                                {isSideBarToggle ? (<FaTimes className='sidebar-toggle-iconb' onClick={() => setIsSideBarToggle(false)} />) :
+                                    (<FaBars className='sidebar-toggle-iconb' onClick={() => setIsSideBarToggle(true)} />)}
+                            </div>
+
+                            <p>Search students</p>
+
+                            <input
+                                placeholder="Search by room number, status, or location"
+                                type="text"
+                                className="search"
+                                value={searchTerm}
+                                onChange={handleSearchChange}
+                            />
+                            <div>
+                                <RoomTable
+                                    rooms={filteredData}
+                                    onAddRoom={handleAddRoom}
+                                    onUpdateRoom={handleUpdateRoom}
+                                    onDeleteRoom={handleDeleteRoom}
+                                />
+                            </div>
+
+                        </div>
+                    </main>
+
+                </div>
             </div>
         </div>
+
+
+
     );
 };
 

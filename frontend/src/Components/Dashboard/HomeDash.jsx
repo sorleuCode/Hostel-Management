@@ -37,7 +37,7 @@ const HomeDash = () => {
       </div>
 
       <div className='__secondCon'>
-        <h3 className='__quickTitle'>Quick Starts</h3>
+        <h3 className='__quickTitle'>Quick Stats</h3>
 
         <div className='__flex __boards'>
           <div className='__board'>
@@ -83,7 +83,7 @@ const HomeDash = () => {
       <div className='__lastCon'>
         <h3 className='__lastTitle'>Quick Actions</h3>
 
-        <div>
+        <div className='__homeBtn'>
           <button className='__addBtn'>
             <Link to="/student-reg">Add a student</Link>
           </button>

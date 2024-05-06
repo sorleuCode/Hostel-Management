@@ -25,8 +25,12 @@
  }
 
  .right {
-  width: 921px;
+  /* width: 921px; */
   padding: 16px;
+}
+
+.--dash-main {
+  width: 90%;
 }
 
 .right p:nth-child(1) {
@@ -64,6 +68,10 @@
   font-size: 12px;
   font-weight: 400;
   line-height: 24px;
+}
+
+.room-table {
+  max-width: 1600px;
 }
 
 .table {
@@ -113,8 +121,8 @@ tbody > tr:hover {
 }
 
 .right button {
-  margin-top: 1.2em;
-  width: 300px;
+   margin-top: 1rem;
+  /* width: 300px; */
   height: 40px;
   padding: 0px 16px;
   color: #121417;
@@ -130,4 +138,42 @@ tbody > tr:hover {
   background: transparent;
 }
 
+.modal-content input {
+  border: 1px solid grey;
+  width: 100%;
+  padding: 4px ;
+  font-size: 12px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
 
+
+.mobile-side-nav {
+  position: fixed;
+  left: 0;
+  display: block;
+}
+
+.sidebar-toggle-iconb {
+  display: none;
+  font-size: 50px;
+  cursor: pointer;
+}
+
+
+@media (max-width: 991px) {
+    .sidebar-toggle-iconb {
+      display: block;
+    }
+
+    .desktop-side-nav {
+      display: none;
+    }
+
+    .--dash-main {
+      width: 100%;
+    }
+}

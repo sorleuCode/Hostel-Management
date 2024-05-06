@@ -31,11 +31,11 @@ function App() {
           <Route path="/login" element={<Login />} />
           {/* <Route path="/login" element={<Login />} /> */}
           <Route path="/student-reg" element={<Layout><StudentReg /></Layout>} />
-          <Route path="/homedash" element={<Layout><HomeDash /></Layout>} />
+          <Route path="/homedash" element={<HomeDash />} />
           <Route path="/studentdash" element={<StudentDashboard />} />
           <Route path="/room" element={<Room />} />
           <Route path="/adminsPrev" element={<AdminPreview />} />
-          <Route path="/attendance" element={<Attendance />} />
+          <Route path="/attendance" element={<Layout><Attendance /></Layout>} />
         </Routes>
 
 

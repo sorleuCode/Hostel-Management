@@ -1,9 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@400..700&family=Inter:wght@100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
 :root {
+  --main-bg: #fff;
+  /* --primary-color: #121417; */
 
-  --main-bg: #fff7;
-
-  --font-family: "inter", "sans-serif";
+  --font-family: "Inter", "sans-serif";
   --font-weight: 700;
 
   --primary-btn-bg: #1a80e5;
@@ -19,19 +20,21 @@
   scroll-behavior: smooth;
 }
 
-*{
+* {
   padding: 0;
   margin: 0;
   border: none;
+  box-sizing: border-box;
   text-decoration: none;
   outline: none;
 }
 
 a {
-  color: var(--primary-color);;
+  color: var(--primary-color);
 }
-.container{
-  padding: 20px 160px;;
+
+.container {
+  padding: 20px 160px;
 }
 
 button {
@@ -47,7 +50,7 @@ img {
 
 .btn-primary {
   border-radius: 12px;
-  background: #1a80e5;
+  background: var(--primary-btn-bg);
   padding: var(--primary-btn-padding);
   color: var(--main-bg);
   font-family: var(--font-family);
@@ -58,7 +61,6 @@ img {
   letter-spacing: 0.21px;
   width: 84px;
   height: 40px;
-
 }
 
 .btn-secondary {
@@ -71,7 +73,7 @@ img {
   font-style: normal;
   font-weight: var(--font-weight);
   line-height: 21px;
-  letter-spacing: 0.21;
+  letter-spacing: 0.21px;
   height: 40px;
 }
 
@@ -82,12 +84,14 @@ img {
   height: 40px;
   padding: 10px;
 }
+
 /* Flex */
 .--flex-center {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .--flex-start {
   display: flex;
   justify-content: flex-start;
@@ -99,11 +103,15 @@ img {
   justify-content: flex-end;
   align-items: center;
 }
-
 .--flex-between {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.--flex-justify-center {
+  display: flex;
+  justify-content: center;
 }
 
 .--dir-column {
@@ -112,6 +120,12 @@ img {
 
 .--flex-dir-column {
   display: flex;
+  flex-direction: column;
+}
+
+.--flex-justify-between {
+  display: flex;
+  justify-content: space-between;
 }
 
 .--align-center {
@@ -122,13 +136,12 @@ img {
 .--100vh {
   height: 100vh;
 }
-
 .--mh-100vh {
   min-height: 100vh;
 }
 
 .--gap {
-  gap:50px;
+  gap: 50px;
 }
 
 .modal {
@@ -197,7 +210,7 @@ img {
 .modal-content input {
   border: 1px solid grey;
   width: 100%;
-  padding: 4px ;
+  padding: 4px;
   font-size: 12px;
   border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -206,26 +219,54 @@ img {
   -o-border-radius: 5px;
 }
 
+.--flex {
+ display: flex;
 
-@media  (min-width: 768px) and (max-width: 991px) {
+}
+
+.--flex-1 {
+ flex: 1 1 0%;
+}
+
+.--overflow-hidden {
+  overflow: hidden;
+}
+
+.overflow-x-hidden {
+  overflow: hidden;
+}
+
+/* .overflow-x {
+  overflow-x: hidden;
+} */
+
+.--overflow-y-auto  {
+  overflow: hidden;
+}
+
+@media (min-width: 768px) and (max-width: 991px){
   .container {
     padding: 0;
   }
-
 }
 
-@media  (min-width: 481px) and (max-width: 767px) {
+@media (min-width: 481px) and (max-width: 767px) {
   .container {
-    padding: 50px 70px;
+    padding:50px 70px;
   }
-
-
 }
-@media  (min-width: 290px) and (max-width: 480px) {
+
+@media (min-width: 290px) and (max-width: 480px) {
   .container {
-    padding: 0;
+    padding:0;
   }
-
-
 }
 
+@media (max-width: 390px) {
+  img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50px;
+    cursor: pointer;
+ }
+}

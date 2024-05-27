@@ -108,7 +108,7 @@ const deleteAdmin = asyncHandler(async (req, res) => {
 
 
   try {
-    const {adminId} = req.params
+    const { adminId } = req.params
 
     const admin = Admin.findById(adminId);
     if (!admin) {
@@ -133,50 +133,70 @@ const deleteAdmin = asyncHandler(async (req, res) => {
 // get details of single admin
 
 const getAdmin = asyncHandler(async (req, res) => {
-    const { adminId } = req.params;
+  const { adminId } = req.params;
 
-    const admin = await Admin.findById(adminId);
+  const admin = await Admin.findById(adminId);
 
-    if (admin) {
-      const { id, fullname, email, role } = admin;
+  if (admin) {
+    const { id, fullname, email, role } = admin;
 
-      res.status(200).json({ id, fullname, email, role })
-    } else {
-      res.status(404).json({ "message": "Admin not found" })
-    }
+    res.status(200).json({ id, fullname, email, role })
+  } else {
+    res.status(404).json({ "message": "Admin not found" })
+  }
 })
 
 // get all admins details
 
 const getAllAdmins = asyncHandler(async (req, res) => {
   const admins = await Admin.find().sort("-createdAt").select("-password")
-    if (!admins){
-      res.status(500);
-      throw new Error("something went wrong")
-    }
+  if (!admins) {
+    res.status(500);
+    throw new Error("something went wrong")
+  }
 
-    res.status(200).json(admins)
+  res.status(200).json(admins)
 })
 
 const updateAdmin = asyncHandler(async (req, res) => {
 
   const { adminId } = req.params;
 
-    const admin = await Admin.findById(adminId).select("-password");
+  const admin = await Admin.findById(adminId).select("-password");
 
-    if (admin) {
 
-      if (req.body?.fullname) admin.fullname = req.body.fullname;
-      if (req.body?.email) admin.email = req.body.email;
-      if (req.body?.role) admin.role = req.body.role;
-  
-      const result = await admin.save()
+  if (!admin) {
+    res.status(404).json({ error: "Admin not found" })
+  }
+  if (admin) {
 
-      res.json(result)
+    if (req.body?.fullname) admin.fullname = req.body.fullname;
+    if (req.body?.email) admin.email = req.body.email;
+    if (req.body?.role) admin.role = req.body.role;
 
-}
+    const result = await admin.save()
+
+    res.json(result)
+
+  }
 
 })
 
+const logoutAdmin = asyncHandler(async (req, res) => {
 
-module.exports = { register, login, getAdmin, deleteAdmin, getAllAdmins, updateAdmin }
+
+  // Clear the "token" cookie by setting it to an empty string and an expiration date in the past
+  res.cookie("token", "", {
+    path: "/",
+    httpOnly: true,
+    expires: new Date(0), // Setting the expiration date to a time in the past to effectively delete the cookie
+    sameSite: "none",     // This attribute helps with cross-site request protection
+    secure: true,         // Ensures the cookie is sent only over HTTPS
+  });
+
+  // Send a 200 OK response with a message indicating successful logout
+  res.status(200).json({ message: "Logout successful" });
+});
+
+
+module.exports = { register, login, getAdmin, deleteAdmin, getAllAdmins, updateAdmin, logoutAdmin }

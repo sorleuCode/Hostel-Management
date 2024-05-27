@@ -158,5 +158,25 @@ const getAllAdmins = asyncHandler(async (req, res) => {
     res.status(200).json(admins)
 })
 
+const updateAdmin = asyncHandler(async (req, res) => {
 
-module.exports = { register, login, getAdmin, deleteAdmin, getAllAdmins }
+  const { adminId } = req.params;
+
+    const admin = await Admin.findById(adminId).select("-password");
+
+    if (admin) {
+
+      if (req.body?.fullname) admin.fullname = req.body.fullname;
+      if (req.body?.email) admin.email = req.body.email;
+      if (req.body?.role) admin.role = req.body.role;
+  
+      const result = await admin.save()
+
+      res.json(result)
+
+}
+
+})
+
+
+module.exports = { register, login, getAdmin, deleteAdmin, getAllAdmins, updateAdmin }

@@ -17,7 +17,7 @@ const register = asyncHandler(async (req, res) => {
 
     const adminExists = await Admin.findOne({ email })
 
-    adminExists && (() => { res.status(400); throw new Error("Email already exists") });
+    adminExists && (() => { res.status(400); throw new Error("Email already exists") })();
 
     const admin = await Admin.create({
       fullname, email, password

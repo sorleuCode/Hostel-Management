@@ -8,6 +8,8 @@ const mongoose = require("mongoose");
 const connectDB = require("./config/DBConnet")
 const errorHandler = require("./middleware/errorMiddleware");
 const adminRoute = require("./routes/adminRoutes")
+const roomRoute = require("./routes/roomRoutes")
+const studentRoute = require("./routes/studentRoutes")
 
 
 const PORT = process.env.PORT || 3500;
@@ -36,6 +38,9 @@ app.get("/", (req, res) => {
 });
 
 app.use("/admin", adminRoute)
+
+app.use("/room", roomRoute)
+app.use("/student", studentRoute)
 
 connectDB()
 

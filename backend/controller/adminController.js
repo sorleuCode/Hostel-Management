@@ -138,9 +138,9 @@ const getAdmin = asyncHandler(async (req, res) => {
   const admin = await Admin.findById(adminId);
 
   if (admin) {
-    const { id, fullname, email, role } = admin;
+    const { _id, fullname, email, role } = admin;
 
-    res.status(200).json({ id, fullname, email, role })
+    res.status(200).json({ _id, fullname, email, role })
   } else {
     res.status(404).json({ "message": "Admin not found" })
   }

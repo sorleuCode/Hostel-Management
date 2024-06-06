@@ -4,11 +4,11 @@ const {createNewRoom, getAllRoom, updateRoom, deleteRoom, getRoom} = require("..
 const {protect} = require("../middleware/authMiddleware");
 
 
-router.post("/create", protect, createNewRoom);
-router.get("/", protect, getAllRoom);
-router.patch("/:roomId", protect, updateRoom);
-router.delete("/:roomId", protect, deleteRoom);
-router.get("/:roomId", protect, getRoom);
+router.post("/create", createNewRoom);
+router.get("/", getAllRoom);
+router.patch("/:roomId", updateRoom);
+router.delete("/:roomId", deleteRoom);
+router.get("/:roomId", getRoom);
 
 
 

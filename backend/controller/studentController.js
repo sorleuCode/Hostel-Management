@@ -2,6 +2,7 @@ const asyncHandler = require("express-async-handler");
 const Student = require("../models/StudentModel");
 const Room = require("../models/RoomModel");
 const { generateUniqueId } = require("../utils/generateUniqueId");
+const { SiTrueup } = require("react-icons/si");
 
 const ensureUniqueId = async () => {
   let uniqueId;
@@ -16,6 +17,32 @@ const ensureUniqueId = async () => {
 
   return uniqueId;
 };
+
+const date = new Date();
+const formatDate = (input) => {
+  return input > 9 ? input : `0${input}`
+}
+
+const formatHour = (input) => {
+  return input > 12 ? input - 12 : input;
+}
+
+const format = {
+  dd: formatDate(date.getDate()),
+  mm: formatHour(date.getMonth() + 1),
+  yyyy: formatDate(date.getFullYear()),
+
+  HH: formatDate((date.getHours())),
+  hh: formatDate(formatHour(date.getHours())),
+
+  MM: formatDate(date.getMinutes()),
+  SS: formatDate(date.getSeconds()),
+
+}
+
+const format24Hour = ({dd, mm, yyyy, HH, MM, SS}) => {
+  return `${mm}/${dd}/${yyyy} ${HH}:${MM}:${SS}`
+}
 
 const registerStudent = asyncHandler(async (req, res) => {
   try {
@@ -61,7 +88,9 @@ const registerStudent = asyncHandler(async (req, res) => {
         guardianEmail: g_email
       },
       gender,
-      room: room._id // Assign the room's ObjectId to the student
+      room: room._id ,// Assign the room's ObjectId to the student
+      checkedIn: true,
+      checkedInTime: format24Hour(format)
     });
 
 
@@ -194,15 +223,22 @@ const updateCheckInstatus = asyncHandler(async (req, res) => {
   }
 
   if (action === "checkIn") {
-    student.checkIn();
+    student.checkedIn= true;
+    student.checkedInTime = format24Hour(format)
 
   } else if (action === "checkOut") {
-    student.checkOut()
+    student.checkedIn = false;
+    student.checkedOutTime = format24Hour(format)
   } else {
     return res.status(400).json({
       msg: "Invalid action"
     })
   }
+
+  await Room.updateMany(
+    { roomOccupancy: studentId},
+    {$pull: {roomOccupancy: studentId}}
+  );
 
   await student.save();
   res.status(200).json({ msg: `Student ${action} succesfully`, student })
@@ -223,9 +259,7 @@ const deleteStudent = asyncHandler(async (req, res) => {
 
   const studentRoom = await Room.findById(student.room);
 
-  if (!studentRoom) {
-    res.status.json({ msg: "No room found" })
-  }
+ 
 
   if(studentRoom) {
     studentRoom.roomOccupancy = studentRoom.roomOccupancy.filter((occupant) => occupant.toString() !== studentId)

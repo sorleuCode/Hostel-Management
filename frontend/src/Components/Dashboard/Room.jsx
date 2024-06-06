@@ -1,73 +1,98 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Sidebar from "./Sidebar"
 import RoomTable from "./RoomTable";
 import { FaBars, FaTimes } from "react-icons/fa";
 import "../Dashboard/Dashboard.css"
+import useAuthRedirect from "../../../context/useAuth";
+import axios from "axios";
+import { confirmAlert } from "react-confirm-alert";
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 
-const initialRooms = [
-    {
-        roomNumber: "101",
-        capacity: 3,
-        occupancy: 2,
-        status: "Available",
-        location: "Lakeside Manor, Riverside",
-    },
-    {
-        roomNumber: "102",
-        capacity: 3,
-        occupancy: 3,
-        status: "Occupied",
-        location: "Hillview Hostel, Springfield",
-    },
-    {
-        roomNumber: "103",
-        capacity: 4,
-        occupancy: 3,
-        status: "Available",
-        location: "Maplewood Lodge, Greenfield",
-    }
-];
 
 
 const Room = () => {
-    const [searchTerm, setSearchTerm] = useState("");
-    const [rooms, setRooms] = useState(initialRooms);
-    const [filteredData, setFilteredData] = useState(initialRooms);
-    const [isSideBarToggle, setIsSideBarToggle] = useState(false)
+    useAuthRedirect();
+    const [roomData, setRoomData] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [search, setSearch] = useState("");
+    const [searchResult, setSearchResult] = useState([]);
+    const [message, setMessage] = useState("");
+    const [isSideBarToggle, setIsSideBarToggle] = useState(false);
 
-    const handleSearchChange = (e) => {
-        const term = e.target.value.toLowerCase();
-        setSearchTerm(term);
-        const filtered = rooms.filter(
-            (room) =>
-                room.roomNumber.toLowerCase().includes(term) ||
-                room.status.toLowerCase().includes(term) ||
-                room.location.toLowerCase().includes(term)
-        );
-        setFilteredData(filtered);
-    };
+    useEffect(() => {
+        setIsLoading(true);
+        const fetchRooms = async () => {
+            try {
+                const response = await axios.get("http://localhost:3500/room/");
+                setRoomData(response.data);
+            } catch (error) {
+                setIsLoading(false);
+                if(error.response && error.response.status === 400) {
+                    setMessage("Cannot fetch room...")
+                }else {
+                    setMessage("server error!")
+                }
+            }finally{
+                setMessage(false)
+            }
+        }
+
+        fetchRooms();
+    }, []);
+
+    useEffect(() => {
+        const filteredRooms = roomData.filter((res) => {
+            const roomLocation = res.roomLoaction?.toLowerCase() || "";
+            const roomStatus = res.roomStatus?.toLowerCase() || "";
+
+            return (
+                roomLocation.includes(search.toLowerCase()) || 
+                roomStatus.includes(search.toLowerCase())
+            );
+        });
+
+        setSearchResult(filteredRooms);
+    }, [roomData, search])
+
 
     const handleAddRoom = (newRoomData) => {
-        setRooms([...rooms, newRoomData]);
-        setFilteredData([...rooms, newRoomData]);
+       setRoomData((prevData) => [...prevData, newRoomData])
     };
 
-    const handleUpdateRoom = (roomNumber, newStatus) => {
-        const updatedRooms = rooms.map((room) =>
-            room.roomNumber === roomNumber ? { ...room, status: newStatus } : room
-        );
-        setRooms(updatedRooms);
-        setFilteredData(updatedRooms);
+    const handleUpdateRoom = (updatedRoomData) => {
+       setRoomData((prevData) => prevData.map((room) => room._id === updatedRoomData._id ? updatedRoomData : room))
     };
 
-    const handleDeleteRoom = (roomNumber) => {
-        const updatedRooms = rooms.filter(
-            (room) => room.roomNumber !== roomNumber
-        );
-        setRooms(updatedRooms);
-        setFilteredData(updatedRooms);
-    };
+
+    const removeRoom = async(id) => {
+        try {
+            await axios.delete(`http://localhost:3500/room/${id}`);
+            setRoomData((prevRoomdata) => prevRoomdata.filter((room) => room._id !== id))
+        } catch (error) {
+            console.error("Failed to delee room", error)
+        }
+    }
+
+    const confirmDelete = (_id) => {
+        confirmAlert({
+          title: " Delete This Room",
+          message: "Are you sure you want to delete this room",
+          buttons: [
+            {
+              label: "Delete",
+              onClick: () => removeRoom(_id),
+            },
+    
+            {
+              label: "Cancel",
+              onClick: () => alert("deletion cancelled"),
+            },
+    
+          ],
+        });
+      };
+
 
     return (
         <div>
@@ -98,15 +123,15 @@ const Room = () => {
                                 placeholder="Search by room number, status, or location"
                                 type="text"
                                 className="search"
-                                value={searchTerm}
-                                onChange={handleSearchChange}
+                                value={search}
+                                onChange={(e) => setSearch(e.target.value)}
                             />
                             <div>
                                 <RoomTable
-                                    rooms={filteredData}
+                                    rooms={searchResult}
                                     onAddRoom={handleAddRoom}
                                     onUpdateRoom={handleUpdateRoom}
-                                    onDeleteRoom={handleDeleteRoom}
+                                    onDeleteRoom={confirmDelete}
                                 />
                             </div>
 

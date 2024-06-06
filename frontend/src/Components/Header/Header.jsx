@@ -1,19 +1,36 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "../Header/Header.css"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import HeaderSideBar from "./HeaderSideBar";
+import { UserContext } from "../../../context/userContext";
+import axios from "axios";
+import { toast } from "react-toastify"
 
 
 const items = [
-    { title: "Dashboard", url: "/homedash" },
     { title: "Student", url: "/studentdash" },
     { title: "Rooms", url: "/room" },
 ];
 
 const Header = () => {
+    const navigate = useNavigate();
+    const { setUser } = useContext(UserContext)
+    const [navToggle, setNavToggle] = useState(false);
 
-    const [navToggle, setNavToggle] = useState(false)
+    const logOutUser = async () => {
+        try {
+            await axios.post("http://localhost:3500/admin/logout", null, {
+                withCredentials: true
+            });
+
+            setUser(null);
+            toast.success("User logged out!")
+            navigate("/login")
+        } catch (error) {
+            console.error
+        }
+    }
 
     return (
         <>
@@ -67,7 +84,7 @@ const Header = () => {
                     </div>
 
                     <div className="btn__wrapper --flex-center">
-                        <button className="btn-primary">New</button>
+                        <button className="btn-danger" onClick={logOutUser}>Logout</button>
                         <button className="notification">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -85,7 +102,9 @@ const Header = () => {
                             </svg>
                         </button>
                         <div>
-                            <img src="src/assets/nav-image.jpg" alt="nav-image" />
+                            <Link to="/adminPrev">
+                                <img src="src/assets/nav-image.jpg" alt="nav-image" />
+                            </Link>
                         </div>
                     </div>
                 </nav>

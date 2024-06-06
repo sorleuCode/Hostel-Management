@@ -64,7 +64,7 @@ const updateRoom = asyncHandler(async (req, res) => {
 
         const result = await room.save()
 
-        res.json(result)
+        res.status(200).json(result)
 
     }
 

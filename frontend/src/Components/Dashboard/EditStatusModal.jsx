@@ -1,15 +1,31 @@
 import React, { useState } from 'react';
+import "./Dashboard.css";
+import axios from 'axios';
 
 const EditStatusModal = ({ room, onUpdateRoom, onClose }) => {
   const [newStatus, setNewStatus] = useState(room.status);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState("")
 
   const handleStatusChange = (e) => {
     setNewStatus(e.target.value);
   };
 
-  const handleSubmit = () => {
-    onUpdateRoom(room.roomNumber, newStatus);
-    onClose();
+  const handleSubmit = async () => {
+      setIsSubmitting(true)
+      setError("")
+
+      try {
+        const response = await axios.patch(`http://localhost:3500/room/${room._id}`, {roomStatus: newStatus});
+        console.log("Room updated!")
+        onUpdateRoom(response.data)
+        onClose()
+      } catch (error) {
+        setError("Failed to update room status, please try again!")
+        console.log(error)
+      } finally {
+        setIsSubmitting(false)
+      }
   };
 
   return (

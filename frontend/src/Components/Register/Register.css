@@ -1,40 +1,43 @@
-
-@media  (min-width: 1200px) and (max-width: 1919px) {
+@media (min-width: 1200px) and (max-width: 1919px) {
 
   .form-container {
-    width: 90%;
-    max-width: 50rem;
-    padding: 25px;
+    width: 70%;
+    max-width: 55rem;
+    padding: 20px 40px;
+    font-size: 25px;
     
   }
-  .input {
-    font-size: 25px;
-    height: 60px;
+
+  .title {
+    font-size: 35px;
   }
 
-  .title{
-    font-size: 45px;
-  }
   .form {
     gap: 22px;
-    
+    padding: 30px 0;
   }
 
+  .input {
+    height: 60px;
+    font-size: 25px;
+  }
   label {
     font-size: 25px;
   }
 
   .--btn {
-    font-size: 25px;
-    height: 80px;
-  }
-
-  .form-container p > a {
+    height: 60px;
     font-size: 25px;
   }
 
+  .form-container >p >a {
+    text-decoration: underline;
+    font-size: 25px;
+  }
+  
 }
 
+/* Normal css */
 
 .form__ {
   position: relative;
@@ -53,6 +56,11 @@
   margin: 0 auto;
 }
 
+.form-container > p > a {
+  text-decoration: underline;
+  font-size: 15px;
+}
+
 .title {
   font-family: Inter;
   font-size: 30px;
@@ -69,12 +77,8 @@
   padding: 30px 0;
 }
 
-.form-container p > a {
-  text-decoration: underline;
-  font-size: 16.5px;
-}
 .input {
-  width: 97%;
+  width: 100%;
   display: flex;
   height: 37px;
   padding: 8px 12px;
@@ -99,7 +103,7 @@ label {
 .--btn {
   display: flex;
   height: 40px;
-  padding: 24px 16px;
+  padding: 16px;
   justify-content: center;
   align-items: center;
   flex: 1 0 0;
@@ -109,46 +113,45 @@ label {
   color: #fff;
 }
 
-
-.--btn:hover {
-  transition-duration: 600ms;
-  transform: translateY(-2px);
+.card {
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px #354d5f;
+  overflow: hidden;
 }
 
-
-.title{
-  font-size: 45px;
+.indicator {
+  list-style: none;
+  font-size: 15px;
 }
-.form {
-  gap: 22px;
-  padding: 30px 0;
+/* Normal css */
+
+.error-message{
+  color: red;
+  font-size: 10px;
 }
 
+@media (min-width:992px) and (max-width: 1199px) {
 
-@media  (min-width: 992px) and (max-width: 1200px) {
 
   .form-container {
     width: 70%;
-    max-width: 55rem;
+    max-width: 35rem;
     padding: 20px 30px;
     font-size: 20px;
   }
 
-  .title{
+  .title {
     font-size: 30px;
   }
+
   .form {
     gap: 18px;
-    
+    padding: 30px 0;
   }
 
   .input {
-    font-size: 20px;
     height: 40px;
-    width: 95%
-  }
-
-  .--btn {
     font-size: 20px;
   }
 
@@ -156,61 +159,68 @@ label {
     font-size: 20px;
   }
 
-  .form-container p > a {
+  .--btn {
+    height: 40px;
+    font-size: 20px;
+  }
+
+  .form-container >p  >a {
+    text-decoration: underline;
     font-size: 20px;
   }
 
 }
 
-@media  (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 768px) and (max-width: 991px) {
+
   .form-container {
     width: 70%;
     max-width: 30rem;
     padding: 20px 30px;
-    font-size: 20px;
+    font-size: 18px;
   }
 
-  .title{
-    font-size: 25px;
+  .title {
+    font-size: 30px;
     font-weight: 600;
   }
 
   .form {
     gap: 14px;
     padding: 25px 0;
-    
   }
 
   .input {
-    font-size: 16px;
     height: 35px;
-    width: 94%;
+    font-size: 16px;
   }
 
   label {
     font-size: 18px;
   }
+
   .--btn {
-    font-size: 18px;
     height: 30px;
-  }
-
-  .form-container p > a {
     font-size: 18px;
   }
 
+  .form-container >p  >a {
+    text-decoration: underline;
+    font-size: 18px;
+  }
 }
 
-@media  (min-width: 481px) and (max-width: 767px) {
+@media (min-width: 481px) and (max-width: 767px) {
 
   .form-container {
-    padding: 20px 10px;
+    width: 100%;
+    max-width: 30rem;
+    padding: 20px 10px; 
     font-size: 16px;
   }
 
- 
-
-  .title{
+  .title {
+    /* padding-top: 2rem; */
     font-size: 20px;
     font-weight: 800;
   }
@@ -218,41 +228,35 @@ label {
   .form {
     gap: 10px;
     padding: 10px 0;
-    
   }
 
   .input {
+    height: 30px;
     font-size: 12px;
-    height: 18px;
-    width: 89%;
   }
 
   .--btn {
-    font-size: 12px;
     height: 20px;
-    padding: 16px 16px;
+    font-size: 12px;
   }
 
-  .form-container p > a {
+  .form-container >p  >a {
+    text-decoration: underline;
     font-size: 14px;
-  }
-
-  label {
-    font-size: 16px;
   }
 }
 
-@media  (min-width: 290px) and (max-width: 480px) {
-
+@media (min-width: 290px) and (max-width: 480px) {
+  
   .form-container {
     width: 100%;
-    /* max-width: 35rem; */
-    padding: 20px 20px;
-    font: 16px;
-  
+    /* max-width: 30rem; */
+    padding: 20px 10px; 
+    font-size: 16px;
   }
 
-  .title{
+  .title {
+    /* padding-top: 2rem; */
     font-size: 16px;
     font-weight: 800;
   }
@@ -260,21 +264,18 @@ label {
   .form {
     gap: 5px;
     padding: 10px 0;
-    
   }
 
   .input {
+    height: 25px;
     font-size: 12px;
-    height: 14px;
-    width: 90%;
     margin-top: 2px;
   }
 
   .--btn {
+    height: 25px;
     font-size: 12px;
-    height: 20px;
-    padding: 14px 16px;
-    margin-top: 1rem;
-  }
-
+    padding: 10px;
+    margin-top: 10px;
+ }
 }

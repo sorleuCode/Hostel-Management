@@ -21,7 +21,7 @@ const StudentDashboard = () => {
 
   const [data, setData] = useState([]);
   const [message, setMessage] = useState("");
-  const [selectedModal, setSelectedModal] = useState();
+  const [selectedModal, setSelectedModal] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [search, setSearch] = useState("");
@@ -191,21 +191,24 @@ const StudentDashboard = () => {
             </button>
             <button
               onClick={() => {
-                handleModalSelected("changeStudentRoom");
-                className = "two";
+                handleModalSelected("changeStudentRoom")
+                
               }}
+
+              className = "two"
             >
               Change student room
             </button>
             <button
               onClick={() => {
-                handleModalSelected("UpdatedCheckInStatus");
-                className = "three";
+                handleModalSelected("UpdateCheckin")
               }}
+
+              className = "three"
             >
               updated check-in
             </button>
-            <button onClick={handleModalSelected}>Close</button>
+            <button onClick={handleModalClose}>Close</button>
           </div>
         </div>
       )}
@@ -221,7 +224,7 @@ const StudentDashboard = () => {
           onClose={handleModalClose}
         />
       )}
-      {selectedModal === "UpdateCheckIn" && (
+      {selectedModal === "UpdateCheckin" && (
         <UpdateCheckIn
           student={selectedStudent}
           onClose={handleModalClose}

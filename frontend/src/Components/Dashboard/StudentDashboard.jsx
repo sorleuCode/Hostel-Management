@@ -30,7 +30,7 @@ const StudentDashboard = () => {
   useEffect(() => {
     const fetchStudents = async () => {
       try {
-        const response = await axios.get("http://localhost:3500/student/");
+        const response = await axios.get("https://hostel-management-3ztc.vercel.app/student/");
         setData(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -56,7 +56,7 @@ const StudentDashboard = () => {
     try {
       console.log(`Delete student by id: ${_id}`);
       const response = await axios.delete(`
-        http://localhost:3500/student/delete-student/${_id}
+        https://hostel-management-3ztc.vercel.app/student/delete-student/${_id}
       `);
       setData((prevData) => prevData.filter((student) => student._id !== _id));
       setMessage("Student deleted successfully");

@@ -11,7 +11,7 @@ const ChangeStudentRoom = ({student, onClose}) => {
  const  handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = axios.post("http://localhost:3500/student/change-room", {
+      const response = axios.post("https://hostel-management-3ztc.vercel.app/student/change-room", {
         studentId: student._id,
         newRoomNum
       });

@@ -50,7 +50,7 @@ const AdminPreview = () => {
 
     const handleUpdateRole = async (id, newRole) => {
         try {
-            const response = await axios.patch(`http://localhost/admin/${id}`, {
+            const response = await axios.patch(`http://localhost:3500/admin/${id}`, {
                 role: newRole
             })
 
@@ -85,7 +85,15 @@ const AdminPreview = () => {
             </div>
 
             <div className="__prevList">
+
+            {isLoading ? (
+                <p>Loading...</p>
+            ): adminData.length > 0 ? (
                 <UserTable data={filteredData} onDelete={handleDelete} onUpdateRole={handleUpdateRole} />
+
+            ): (
+                <p>No admins found</p>
+            )}
             </div>
 
             <div className="__inviteBtnCon">

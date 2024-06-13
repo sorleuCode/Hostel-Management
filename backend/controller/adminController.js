@@ -160,7 +160,8 @@ const getAllAdmins = asyncHandler(async (req, res) => {
 
 const updateAdmin = asyncHandler(async (req, res) => {
 
-  const { adminId } = req.params;
+  const adminId = req.params.adminId
+  const {role} = req.body
 
   const admin = await Admin.findById(adminId).select("-password");
 
@@ -170,9 +171,8 @@ const updateAdmin = asyncHandler(async (req, res) => {
   }
   if (admin) {
 
-    if (req.body?.fullname) admin.fullname = req.body.fullname;
-    if (req.body?.email) admin.email = req.body.email;
-    if (req.body?.role) admin.role = req.body.role;
+    
+    admin.role = role;
 
     const result = await admin.save()
 
